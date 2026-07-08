@@ -1,7 +1,7 @@
 <!-- Polling Unit Result -->
 <div class="page-header">
     <div class="page-header-left">
-        <div class="page-header-icon" style="background:#FFFBEB;color:#F59E0B;"><i class="bi bi-bar-chart"></i></div>
+        <div class="page-header-icon page-header-icon-warning"><i class="bi bi-bar-chart"></i></div>
         <div>
             <h1>Polling Unit Result</h1>
             <p>View election results for a selected polling unit</p>
@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<div class="breadcrumb">
+<div class="breadcrumb-nav">
     <a href="index.php">Home</a>
     <span class="sep">/</span>
     <span class="current">Polling Unit Result</span>
@@ -46,7 +46,7 @@
     <!-- Polling Unit Info -->
     <div class="card mb-4">
         <div class="card-header">
-            <h5><i class="bi bi-info-circle me-1" style="color:var(--color-warning);"></i> Polling Unit Information</h5>
+            <h5><i class="bi bi-info-circle me-1 text-warning"></i> Polling Unit Information</h5>
         </div>
         <div class="card-body">
             <div class="info-row">
@@ -82,7 +82,7 @@
                 <thead>
                     <tr>
                         <th>Party</th>
-                        <th style="text-align:right;">Score</th>
+                        <th class="text-right">Score</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -90,7 +90,7 @@
                         <?php foreach ($results as $result): ?>
                             <tr>
                                 <td><strong><?= htmlspecialchars($result['party_abbreviation']) ?></strong></td>
-                                <td style="text-align:right;"><span class="badge badge-primary"><?= number_format($result['party_score']) ?></span></td>
+                                <td class="text-right"><span class="badge badge-primary"><?= number_format($result['party_score']) ?></span></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -108,6 +108,6 @@
             </table>
         </div>
     </div>
-<?php elseif ($_SERVER['REQUEST_METHOD'] === 'POST'): ?>
+<?php elseif ($selected_id !== ''): ?>
     <div class="alert alert-warning"><i class="bi bi-exclamation-triangle"></i> Please select a valid polling unit.</div>
 <?php endif; ?>

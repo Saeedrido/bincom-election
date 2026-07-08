@@ -1,6 +1,3 @@
-CREATE DATABASE IF NOT EXISTS bincom_test;
-USE bincom_test;
-
 CREATE TABLE IF NOT EXISTS state (
   state_id INT PRIMARY KEY AUTO_INCREMENT,
   state_name VARCHAR(255) NOT NULL,

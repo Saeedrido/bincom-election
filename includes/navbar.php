@@ -1,14 +1,11 @@
 <?php
-$currentPage = $pageTitle ?? 'Dashboard';
+$currentPage = $_GET['page'] ?? 'home';
 $navItems = [
     ['label' => 'Dashboard',              'icon' => 'bi-speedometer2',    'page' => 'home'],
     ['label' => 'Polling Unit Results',   'icon' => 'bi-bar-chart',      'page' => 'polling-result'],
     ['label' => 'LGA Summary',            'icon' => 'bi-pie-chart',      'page' => 'lga-result'],
     ['label' => 'Add New Polling Unit',   'icon' => 'bi-plus-square',    'page' => 'add-result'],
 ];
-function isActive(string $navLabel, string $current): bool {
-    return strtolower($navLabel) === strtolower($current);
-}
 function pageUrl(string $page): string {
     return $page === 'home' ? 'index.php' : 'index.php?page=' . $page;
 }
@@ -30,7 +27,7 @@ function pageUrl(string $page): string {
         <div class="sidebar-label">Main Menu</div>
         <?php foreach ($navItems as $item): ?>
             <a href="<?= pageUrl($item['page']) ?>"
-               class="sidebar-link <?= isActive($item['label'], $currentPage) ? 'active' : '' ?>">
+               class="sidebar-link <?= $currentPage === $item['page'] ? 'active' : '' ?>">
                 <i class="bi <?= $item['icon'] ?>"></i>
                 <span><?= $item['label'] ?></span>
             </a>

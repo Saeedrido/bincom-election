@@ -5,15 +5,16 @@ class Database
     private static ?Database $instance = null;
     private PDO $connection;
 
-    private string $host = 'localhost';
-    private string $dbname = 'bincom_test';
-    private string $username = 'root';
-    private string $password = '';
+    private string $host = 'sql200.infinityfree.com';
+    private string $port = '3306';
+    private string $dbname = 'if0_42358781_bincomtest';
+    private string $username = 'if0_42358781';
+    private string $password = 'ntjslK04tDptK';
     private string $charset = 'utf8mb4';
 
     private function __construct()
     {
-        $dsn = "mysql:host={$this->host};dbname={$this->dbname};charset={$this->charset}";
+        $dsn = "mysql:host={$this->host};port={$this->port};dbname={$this->dbname};charset={$this->charset}";
 
         $options = [
             PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,

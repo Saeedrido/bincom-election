@@ -32,12 +32,15 @@ class PollingController
         $pollingUnits = $this->model->getAllPollingUnits();
         $pollingUnitDetails = null;
         $results = [];
+        $selectedId = '';
 
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['polling_unit_id'])) {
-            $pollingUnitId = (int)$_POST['polling_unit_id'];
+        $requestId = $_POST['polling_unit_id'] ?? $_GET['pu_id'] ?? null;
+        if ($requestId) {
+            $pollingUnitId = (int)$requestId;
             if ($pollingUnitId > 0) {
                 $pollingUnitDetails = $this->model->getPollingUnitDetails($pollingUnitId);
                 $results = $this->model->getPollingUnitResults($pollingUnitId);
+                $selectedId = $pollingUnitId;
             }
         }
 
@@ -45,7 +48,7 @@ class PollingController
             'polling_units'       => $pollingUnits,
             'polling_unit_detail' => $pollingUnitDetails,
             'results'             => $results,
-            'selected_id'         => $_POST['polling_unit_id'] ?? '',
+            'selected_id'         => $selectedId,
         ]);
     }
 

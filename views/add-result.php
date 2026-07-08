@@ -1,7 +1,7 @@
 <!-- Add New Result -->
 <div class="page-header">
     <div class="page-header-left">
-        <div class="page-header-icon" style="background:var(--color-primary-light);color:var(--color-primary);"><i class="bi bi-plus-square"></i></div>
+        <div class="page-header-icon"><i class="bi bi-plus-square"></i></div>
         <div>
             <h1>Add New Polling Unit Result</h1>
             <p>Create a new polling unit and record election results</p>
@@ -9,7 +9,7 @@
     </div>
 </div>
 
-<div class="breadcrumb">
+<div class="breadcrumb-nav">
     <a href="index.php">Home</a>
     <span class="sep">/</span>
     <span class="current">Add New Result</span>
@@ -43,7 +43,7 @@
     <!-- Polling Unit Information -->
     <div class="card mb-4">
         <div class="card-header">
-            <h5><i class="bi bi-geo-alt me-1" style="color:var(--color-primary);"></i> Polling Unit Information</h5>
+            <h5><i class="bi bi-geo-alt me-1 text-primary"></i> Polling Unit Information</h5>
         </div>
         <div class="card-body">
             <div class="row g-3">
@@ -105,13 +105,13 @@
     <!-- Election Results -->
     <div class="card mb-4">
         <div class="card-header">
-            <h5><i class="bi bi-table me-1" style="color:var(--color-primary);"></i> Election Results</h5>
+            <h5><i class="bi bi-table me-1 text-primary"></i> Election Results</h5>
         </div>
         <div class="card-body">
-            <p style="font-size:var(--font-size-sm);color:var(--color-muted);margin-bottom:var(--space-3);">
+            <p class="calc-note" style="margin-bottom:var(--space-3);">
                 <i class="bi bi-info-circle me-1"></i> Enter the score for each party. Only numeric values are accepted.
             </p>
-            <div class="table-container" style="border:none;border-radius:0;">
+            <div class="table-container" style="border:none;border-radius:0;box-shadow:none;">
                 <div class="table-wrapper">
                     <table>
                         <thead>
@@ -124,12 +124,14 @@
                             <?php foreach ($parties as $party): ?>
                                 <tr>
                                     <td>
-                                        <strong><?= htmlspecialchars($party['partyid']) ?></strong>
-                                        <br><span style="font-size:var(--font-size-xs);color:var(--color-muted);"><?= htmlspecialchars($party['party_name']) ?></span>
+                                        <div class="party-name-cell">
+                                            <strong><?= htmlspecialchars($party['partyid']) ?></strong>
+                                            <span class="party-full-name"><?= htmlspecialchars($party['party_name']) ?></span>
+                                        </div>
                                     </td>
                                     <td>
                                         <input type="number"
-                                               class="form-control party-score"
+                                               class="form-control party-score party-score-input"
                                                name="score_<?= htmlspecialchars($party['partyid']) ?>"
                                                id="score_<?= htmlspecialchars($party['partyid']) ?>"
                                                value="<?= htmlspecialchars($_POST['score_' . $party['partyid']] ?? '') ?>"
